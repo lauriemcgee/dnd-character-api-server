@@ -1,0 +1,63 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  character_name: MyString
+  class: MyString
+  level: 1
+  background: MyString
+  player_name: MyString
+  race: MyString
+  alignment: MyString
+  experience_points: 1
+  strength: 1
+  dexterity: 1
+  constitution: 1
+  intelligence: 1
+  wisdom: 1
+  charisma: 1
+  proficiency_bonus: 1
+  armor_class: 1
+  initiative: 1
+  speed: 1
+  current_hit_points: 1
+  temporary_hit_points: 1
+  hit_dice: 1
+  personality_traits: MyString
+  ideals: MyString
+  bonds: MyString
+  flaws: 
+  features_and_traits: MyText
+  attacks_and_spellcasting: MyText
+  equipment: MyString
+  other_proficiencies_and_languages: MyText
+
+two:
+  character_name: MyString
+  class: MyString
+  level: 1
+  background: MyString
+  player_name: MyString
+  race: MyString
+  alignment: MyString
+  experience_points: 1
+  strength: 1
+  dexterity: 1
+  constitution: 1
+  intelligence: 1
+  wisdom: 1
+  charisma: 1
+  proficiency_bonus: 1
+  armor_class: 1
+  initiative: 1
+  speed: 1
+  current_hit_points: 1
+  temporary_hit_points: 1
+  hit_dice: 1
+  personality_traits: MyString
+  ideals: MyString
+  bonds: MyString
+  flaws: 
+  features_and_traits: MyText
+  attacks_and_spellcasting: MyText
+  equipment: MyString
+  other_proficiencies_and_languages: MyText
