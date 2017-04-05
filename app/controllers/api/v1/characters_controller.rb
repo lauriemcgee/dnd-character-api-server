@@ -1,4 +1,4 @@
-class V1::CharactersController < ApplicationController
+class Api::V1::CharactersController < ApplicationController
   def index
     @characters = Character.all
     render "index.json.jbuilder"
