@@ -1,7 +1,7 @@
 json.array! @characters.each do |character|
       json.id character.id
       json.character_name character.character_name
-      json.class character.class
+      json.char_class character.char_class
       json.level character.level
       json.background character.background
       json.player_name character.player_name
@@ -29,5 +29,4 @@ json.array! @characters.each do |character|
       json.attacks_and_spellcasting character.attacks_and_spellcasting
       json.equipment character.equipment
       json.other_proficiencies_and_languages character.other_proficiencies_and_languages
-
 end
