@@ -16,7 +16,7 @@ json.array! @characters.each do |character|
       json.charisma character.charisma
       json.proficiency_bonus character.proficiency_bonus
       json.armor_class character.armor_class
-      json.initiative character.intiative
+      json.initiative character.initiative
       json.speed character.speed
       json.current_hit_points character.current_hit_points
       json.temporary_hit_points character.temporary_hit_points
