@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get "/" => "pages#index"
+  get "/generator" => "pages#index"
+
   namespace :api do
     namespace :v1 do
       get "/" => "characters#index"
@@ -18,4 +21,5 @@ Rails.application.routes.draw do
       delete "/characters/:id" => "characters#destroy"
     end
   end
+
 end

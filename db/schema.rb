@@ -10,21 +10,41 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170414145142) do
+ActiveRecord::Schema.define(version: 20170419232256) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "alignments", force: :cascade do |t|
     t.string   "name"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "abbrev"
+    t.string   "description"
+  end
+
+  create_table "backgrounds", force: :cascade do |t|
+    t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "toolProf"
+    t.text     "equipment"
+    t.text     "features"
+    t.text     "blurb"
   end
 
   create_table "char_classes", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text     "blurb"
+  end
+
+  create_table "character_skills", force: :cascade do |t|
+    t.integer  "character_id"
+    t.integer  "skill_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "characters", force: :cascade do |t|
@@ -65,6 +85,21 @@ ActiveRecord::Schema.define(version: 20170414145142) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "size"
+    t.string   "sizeInfo"
+    t.integer  "speed"
+    t.string   "language"
+    t.text     "langInfo"
+    t.integer  "str"
+    t.integer  "dex"
+    t.integer  "con"
+    t.integer  "intell"
+    t.integer  "wis"
+    t.integer  "char"
+    t.text     "features"
+    t.text     "ageSugg"
+    t.text     "alignSugg"
+    t.text     "blurb"
   end
 
   create_table "skills", force: :cascade do |t|

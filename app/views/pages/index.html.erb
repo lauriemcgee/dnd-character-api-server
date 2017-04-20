@@ -1,0 +1,29 @@
+<h4> This is test </h4>
+
+<% @char_classes.each do |char_class| %>
+<div>
+  <p> <%= char_class.name %> </p>
+  <p> <%= char_class.blurb %> </p>
+</div>
+<% end %>
+
+<% @backgrounds.each do |background| %>
+<div>
+  <p> <%= background.name %> </p>
+  <p> <%= background.blurb %> </p>
+</div>
+<% end %>
+
+<% @races.each do |race| %>
+<div>
+  <p> <%= race.name %> </p>
+  <p> <%= race.blurb %> </p>
+</div>
+<% end %>
+
+<% @alignments.each do |alignment| %>
+<div>
+  <p> <%= alignment.name %> </p>
+  <p> <%= alignment.description %> </p>
+</div>
+<% end %>
