@@ -1,29 +1,55 @@
-<h4> This is test </h4>
-
-<% @char_classes.each do |char_class| %>
-<div>
-  <p> <%= char_class.name %> </p>
-  <p> <%= char_class.blurb %> </p>
+<h4> CHOOSE YOUR FATE </h4>
+<div id="app">
+  <div v-for="character in characters">
+    <p> {{ character.character_name }}</p>
+  </div>
 </div>
-<% end %>
 
-<% @backgrounds.each do |background| %>
 <div>
-  <p> <%= background.name %> </p>
-  <p> <%= background.blurb %> </p>
+  <div>
+    <h3> Choose A Race </h3>
+    <% @races.each do |race| %>
+    <div>
+      <button> <%= race.name %> </button></p>
+      <p><%= race.blurb %></p>
+    </div>
+    <% end %>
+  </div>
 </div>
-<% end %>
 
-<% @races.each do |race| %>
 <div>
-  <p> <%= race.name %> </p>
-  <p> <%= race.blurb %> </p>
+  <div>
+    <h3> Choose A Class </h3>
+    <% @char_classes.each do |char_class| %>
+    <div>
+      <p> <%= char_class.name %> </p>
+      <p> <%= char_class.blurb %> </p>
+    </div>
+    <% end %>
+  </div>
 </div>
-<% end %>
 
-<% @alignments.each do |alignment| %>
 <div>
-  <p> <%= alignment.name %> </p>
-  <p> <%= alignment.description %> </p>
+  <div>
+    <h3> Choose A Background </h3>
+    <% @backgrounds.each do |background| %>
+    <div>
+      <p> <%= background.name %> </p>
+      <p> <%= background.blurb %> </p>
+    </div>
+    <% end %>
+  </div>
 </div>
-<% end %>
+
+<div>
+  <div>
+    <h3> Choose An Alignment </h3>
+    <% @alignments.each do |alignment| %>
+    <div>
+      <p> <%= alignment.name %> </p>
+      <p> <%= alignment.description %> </p>
+    </div>
+  <% end %>
+  </div>
+</div>
+

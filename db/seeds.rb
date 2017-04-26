@@ -1,13 +1,5 @@
-Race.create()
-Race.create()
-Race.create()
-Race.create()
 
-CharClass.create()
-CharClass.create()
-CharClass.create()
-CharClass.create()
-CharClass.create()
+
 
 50.times do
   Character.create( 
