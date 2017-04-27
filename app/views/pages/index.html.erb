@@ -1,11 +1,72 @@
 <h4> CHOOSE YOUR FATE </h4>
 <div id="app">
-  <div v-for="character in characters">
-    <p> {{ character.character_name }}</p>
+  <div>
+    <table style="width:100%">
+      <tr>
+        <th>Name</th>
+        <th>Size</th>
+        <th>Size Info</th>
+        <th>Speed</th>
+        <th>Languages</th>
+      </tr>
+      <tr v-for="race in filteredRaces">
+        <td>{{ race.name }}</td>
+        <td>{{ race.size }}</td>
+        <td>{{ race.sizeInfo }}</td>
+        <td>{{ race.speed }}</td>
+        <td>{{ race.language }}</td>
+      </tr>
+    </table>
+  </div>
+
+<br><br><br><br><br><br><br><br>
+
+  <div>
+    <table style="width:100%">
+        <tr>
+          <th>Alignments</th>
+          <th colspan="2">Descriptions</th>
+        </tr>
+        <tr v-for="alignment in alignments">
+          <td>{{ alignment.name }}</td>
+          <td>{{ alignment.description }}</td>
+        </tr>
+      </table>
+  </div>
+
+<br><br><br><br><br><br><br><br>
+
+  <div>
+   <table style="width:100%">
+      <tr><th>Backgrounds</th>
+        <th colspan="2">Descriptions</th>
+      </tr>
+      <tr v-for="background in backgrounds">
+        <td>{{ background.name }}</td>
+        <td>{{ background.blurb }}</td>
+      </tr>
+    </table>
+  </div>
+
+<br><br><br><br><br><br><br><br>
+
+  <div >
+    <table style="width:100%">
+      <tr><th>Classes</th>
+        <th colspan="2">Descriptions</th>
+      </tr>
+      <tr v-for="charClass in charClasses">
+        <td>{{ charClass.name }}</td>
+        <td>{{ charClass.blurb }}</td>
+      </tr>
+    </table>
   </div>
 </div>
 
-<div>
+
+
+<!-- This is Ruby -->
+<!-- <div>
   <div>
     <h3> Choose A Race </h3>
     <% @races.each do |race| %>
@@ -51,5 +112,5 @@
     </div>
   <% end %>
   </div>
-</div>
+</div> -->
 

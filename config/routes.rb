@@ -12,7 +12,7 @@ Rails.application.routes.draw do
       patch "/characters/:id" => "characters#update"
       delete "/characters/:id" => "characters#destroy"
 
-      get "/char_classes" => "char_classes#index"
+      get "/charClasses" => "char_classes#index"
       get "/races" => "races#index"
       get "/alignments" => "alignments#index"
       get "/backgrounds" => "backgrounds#index"
