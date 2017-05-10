@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
   get "/" => "pages#index"
-  get "/generator" => "pages#index"
-  get "/generator/:id" => "pages#show"
 
   namespace :api do
     namespace :v1 do
