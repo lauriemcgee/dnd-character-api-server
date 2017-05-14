@@ -4,6 +4,6 @@ class PagesController < ApplicationController
     @races = Race.all
     @backgrounds = Background.all
     @alignments = Alignment.all
-    render "index.html.erb"
+    render "index.html"
   end
 end
