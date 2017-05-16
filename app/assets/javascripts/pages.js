@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     el: '#app',
     data: {
       currentName: '',
+      picked: '',
       currentDescription: '',
       races: [],
       alignments: [],
@@ -30,6 +31,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
       newCharacter: function() {
         console.log("this will eventually have character attributes, getting from user/data values");
         this.startCharacter = "";
+      },
+      selectChoice: function() {
+        console.log('selected');
       }
     }
   });

@@ -25,14 +25,21 @@
         <div class="layer" data-depth="0.30"><img src="img/cloud1.png"></div>
         <div class="layer" data-depth="0.35"><img src="img/clouds8.png"></div>
     </div>
-    <div id="content">
+    <transition-group name="fade">
+      <div id="content">
         <div id="app">
-          <ul v-for="race in races">
-              <li>{{ race.name }}</li>
+          <ul v-for="race in races" v-bind:key="race.id">
+              <input type="radio" v-bind:value="race.name" v-model="picked">
+                <label for="race.id">{{ race.name }}</label>
+              <br>
           </ul>
-          </div>
-    </div>
+          <span>You really wanna be a: {{ picked }}</span>
+          <button v-on:click="selectChoice()">Yup, yeah I do</button>
+        </div>
+      </div>
+    </transition-group>
   </div>
+ 
 
       <!-- Scripts -->
       <script src="js/parallax.js"></script>
