@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         this.startCharacter = "";
       },
       selectChoice: function() {
-        console.log('selected');
+        console.log(this.picked);
       }
     }
   });
