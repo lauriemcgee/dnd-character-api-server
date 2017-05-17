@@ -4,8 +4,18 @@ document.addEventListener("DOMContentLoaded", function(event) {
   var app = new Vue({
     el: '#app',
     data: {
+      showCharClass: true,
+      showRace: false,
+      showAlignment: false,
+      showBackground: false,
+      getUserInfo: false,
+      raceChoice: '',
+      charClassChoice: '',
+      alignmentChoice: '',
+      backgroundChoice: '',
+      userName: '',
+      charName: '',
       currentName: '',
-      picked: '',
       currentDescription: '',
       races: [],
       alignments: [],
@@ -28,13 +38,39 @@ document.addEventListener("DOMContentLoaded", function(event) {
       }.bind(this));
     },
     methods: {
-      newCharacter: function() {
-        console.log("this will eventually have character attributes, getting from user/data values");
-        this.startCharacter = "";
+      selectCharClassChoice: function() {
+        this.showCharClass = !this.showCharClass;
+        this.showRace = !this.showRace;
       },
-      selectChoice: function() {
-        console.log(this.picked);
+      selectRace: function() {
+        this.showRace = !this.showRace;
+        this.showAlignment = !this.showAlignment;
+      },
+      selectAlignment: function() {
+        this.showAlignment = !this.showAlignment;
+        this.showBackground = !this.showBackground;
+      },
+      selectBackground: function() {
+        this.showBackground = !this.showBackground;
+        this.getUserInfo = !this.getUserInfo;
+      },
+      buildCharacter: function() {
+        this.errors = [];
+        var params = {charClass: this.charClassChoice, race: this.raceChoice, alignment: this.alignmentChoice, background: this.backgroundChoice, characterName: this.charName, playerName: this.userName};
+        $.post("/api/v1/characters", params, function(responseData) {
+          this.people.push(responseData);
+          this.newPersonName = "";
+          this.newPersonBio = "";
+        }.bind(this)).fail(function(response) {
+          this.errors = response.responseJSON.errors;
+        }.bind(this));
       }
     }
   });
 });
+
+
+
+
+      
+       

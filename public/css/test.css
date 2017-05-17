@@ -53,7 +53,7 @@ img {
     backface-visibidivty: hidden; 
   }
 
-  #content {
+  .content {
     background-color: white;
     overflow: scroll;
     position: absolute;

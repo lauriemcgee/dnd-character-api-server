@@ -25,19 +25,66 @@
         <div class="layer" data-depth="0.30"><img src="img/cloud1.png"></div>
         <div class="layer" data-depth="0.35"><img src="img/clouds8.png"></div>
     </div>
-    <transition-group name="fade">
-      <div id="content">
-        <div id="app">
+    <div id="app">  
+      <transition name="fade">
+        <div class="content" v-if="showCharClass">
+            <ul v-for="charClass in charClasses" v-bind:key="charClass.id">
+                <input type="radio" v-bind:value="charClass.name" v-model="charClassChoice">
+                  <label for="charClass.id">{{ charClass.name }}</label>
+                <br>
+            </ul>
+            <span>You really wanna be a: {{ charClassChoice }}</span>
+            <button v-on:click="selectCharClassChoice()">Yup, yeah I do</button>
+        </div>
+      </transition>
+      <transition name="fade">
+        <div class="content" v-if="showRace">
           <ul v-for="race in races" v-bind:key="race.id">
-              <input type="radio" v-bind:value="race.name" v-model="picked">
+              <input type="radio" v-bind:value="race.name" v-model="raceChoice">
                 <label for="race.id">{{ race.name }}</label>
               <br>
           </ul>
-          <span>You really wanna be a: {{ picked }}</span>
-          <button v-on:click="selectChoice()">Yup, yeah I do</button>
+          <span>You really wanna be a: {{ raceChoice }}</span>
+          <button v-on:click="selectRace()">Yup, yeah I do</button>
         </div>
-      </div>
-    </transition-group>
+      </transition>
+      <transition name="fade">
+        <div class="content" v-if="showAlignment">
+          <ul v-for="alignment in alignments" v-bind:key="alignment.id">
+              <input type="radio" v-bind:value="alignment.name" v-model="alignmentChoice">
+                <label for="alignment.id">{{ alignment.name }}</label>
+              <br>
+          </ul>
+          <span>You really wanna be a: {{ alignmentChoice }}</span>
+          <button v-on:click="selectAlignment()">Yup, yeah I do</button>
+        </div>
+      </transition>
+      <transition name="fade">
+        <div class="content" v-if="showBackground">
+          <ul v-for="background in backgrounds" v-bind:key="background.id">
+              <input type="radio" v-bind:value="background.name" v-model="backgroundChoice">
+                <label for="background.id">{{ background.name }}</label>
+              <br>
+          </ul>
+          <span>You really wanna be a: {{ backgroundChoice }}</span>
+          <button v-on:click="selectBackground()">Yup, yeah I do</button>
+        </div>
+      </transition>
+      <transition name="fade">
+        <div class="content" v-if="getUserInfo">
+          <div>
+            <h3> What's your name? </h3>
+            <input v-model="userName" type="text"></input>
+          </div>
+          <div>
+            <h3>What's your Character's name? </h3>
+            <input v-model="charName" type="text"></input>
+          </div>
+          <div>
+            <input type="submit" value="submit" v-on:click="buildCharacter()">
+          </div>
+      </transition>
+    </div>
   </div>
  
 

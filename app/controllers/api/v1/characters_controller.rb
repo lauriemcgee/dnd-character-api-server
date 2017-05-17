@@ -4,39 +4,44 @@ class Api::V1::CharactersController < ApplicationController
     render "index.json.jbuilder"
   end
   def create
-    @character = Character.new(
-      character_name: params[:character_name],
-      char_class: params[:char_class],
-      level: params[:level],
-      background: params[:background],
-      player_name: params[:player_name],
-      race: params[:race],
-      alignment: params[:alignment],
-      experience_points: params[:experience_points],
-      strength: params[:strength],
-      dexterity: params[:dexterity],
-      constitution: params[:constitution],
-      intelligence: params[:intelligence],
-      wisdom: params[:wisdom],
-      charisma: params[:charisma],
-      proficiency_bonus: params[:proficiency_bonus],
-      armor_class: params[:armor_class],
-      initiative: params[:initiative],
-      speed: params[:speed],
-      current_hit_points: params[:current_hit_points],
-      temporary_hit_points: params[:temporary_hit_points],
-      hit_dice: params[:hit_dice],
-      personality_traits: params[:personality_traits],
-      ideals: params[:ideals],
-      bonds: params[:bonds],
-      flaws: params[:flaws],
-      features_and_traits: params[:features_and_traits],
-      attacks_and_spellcasting: params[:attacks_and_spellcasting],
-      equipment: params[:equipment],
-      other_proficiencies_and_languages: params[:other_proficiencies_and_languages]
+    character_name = params[:characterName]
+    char_class = CharClass.find_by(name: params[:charClass])
+    background = Background.find_by(name: params[:background])
+    player_name = params[:playerName]
+    race = Race.find_by(name: params[:race])
+    alignment = Alignment.find_by(name: params[:alignment])
+    character = Character.create(
+      character_name: character_name,
+      char_class: char_class.name,
+      level: 1,
+      background: background.name,
+      player_name: player_name,
+      race: race.name,
+      alignment: alignment.name,
+      experience_points: 0,
+      strength: race.strength,
+      dexterity: race.dex,
+      constitution: race.con,
+      intelligence: race.intell,
+      wisdom: race.wis,
+      charisma: race.char,
+      proficiency_bonus: 0,
+      armor_class: 0,
+      initiative: 0,
+      speed: race.speed,
+      current_hit_points: 0,
+      temporary_hit_points: 0,
+      hit_dice: 0,
+      personality_traits: ' ',
+      ideals: ' ',
+      bonds: ' ',
+      flaws: ' ',
+      features_and_traits: ' ',
+      attacks_and_spellcasting: ' ',
+      equipment: ' ',
+      other_proficiencies_and_languages: race.language
       )
-    @character.save
-    redirect_to "/characters/#{@character.id}"
+    render "create.html.erb"
   end
   def show
     @character = Character.find_by(id: params[:id])
