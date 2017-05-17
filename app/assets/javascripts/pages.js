@@ -58,9 +58,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         this.errors = [];
         var params = {charClass: this.charClassChoice, race: this.raceChoice, alignment: this.alignmentChoice, background: this.backgroundChoice, characterName: this.charName, playerName: this.userName};
         $.post("/api/v1/characters", params, function(responseData) {
-          this.people.push(responseData);
-          this.newPersonName = "";
-          this.newPersonBio = "";
+          this.characters.push(responseData);
         }.bind(this)).fail(function(response) {
           this.errors = response.responseJSON.errors;
         }.bind(this));
