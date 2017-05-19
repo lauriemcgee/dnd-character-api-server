@@ -6,4 +6,5 @@ json.array! @races.each do |race|
   json.speed race.speed
   json.language race.language
   json.langInfo race.langInfo
+  json.blurb race.blurb
 end

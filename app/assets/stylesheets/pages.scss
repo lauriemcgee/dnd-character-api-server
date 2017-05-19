@@ -82,7 +82,7 @@ img {
 
 .wrapper {
   min-height: 460px;
-  position: absolute;
+  position: relative;
   overflow: hidden;
   display: table;
   height: 100%;
@@ -103,21 +103,8 @@ img {
     transform-style: preserve-3d;
     -webkit-backface-visibidivty: hidden;
     -moz-backface-visibidivty: hidden;
-    backface-visibidivty: hidden; 
+    backface-visibility: hidden; 
     z-index: -50;
-  }
-
-  .content {
-    color: #ffffff;
-    padding: 5%;
-    overflow: scroll;
-    position: absolute;
-    left: 30%;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 500px;
-    height: 450px;
-    z-index: 50;
   }
 
   label, input {
@@ -140,5 +127,143 @@ img {
     font-size: 125%;
     line-height: 1.5;
   }
+
+
+h1 {
+  font-weight: 300;
+  font-size: 1.8em;
+  margin-top: 0;
+}
+a {
+  color: #fff;
+}
+.draggable-header-view {
+  background-color: rgba(0, 0, 0, 0);
+  width: 320px;
+  height: 100%;
+  overflow: scroll;
+  margin: 30px auto;
+  position: relative;
+  font-family: 'Roboto', Helvetica, Arial, sans-serif;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 300;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  }
+.draggable-header-view .bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+.draggable-header-view .header, .draggable-header-view .content {
+  position: relative;
+  z-index: 1;
+  padding: 30px;
+  box-sizing: border-box;
+}
+.draggable-header-view .header {
+  height: 50px;
+}
+.draggable-header-view .content {
+  color: #fff;
+  line-height: 1.5em;
+}
+
+.info-container {
+  position: absolute;
+  display: block;
+  width: 100%;
+  left: 0;
+  top: 0;
+}
+.info {
+  display: flex;
+  position: relative;
+  padding: 1em;
+  margin: 1em;
+}
+
+.overlay {
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background-color: black;
+   opacity: 0.25;
+}
+
+
+
+// THIS IS FOR THE MODAL
+.modal-mask {
+  position: fixed;
+  z-index: 9998;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .5);
+  display: table;
+  transition: opacity .3s ease;
+}
+
+.modal-wrapper {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.modal-container {
+  width: 300px;
+  overflow: scroll;
+  margin: 0px auto;
+  padding: 20px 30px;
+  background-color: #fff;
+  border-radius: 2px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
+  transition: all .3s ease;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.modal-header h3 {
+  margin-top: 0;
+  color: #42b983;
+}
+
+.modal-body {
+  margin: 20px 0;
+}
+
+.modal-default-button {
+  float: right;
+}
+
+/*
+ * The following styles are auto-applied to elements with
+ * transition="modal" when their visibility is toggled
+ * by Vue.js.
+ *
+ * You can easily play with the modal transition by editing
+ * these styles.
+ */
+
+.modal-enter {
+  opacity: 0;
+}
+
+.modal-leave-active {
+  opacity: 0;
+}
+
+.modal-enter .modal-container,
+.modal-leave-active .modal-container {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
 
 

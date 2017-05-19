@@ -1,103 +1,176 @@
-<!DOCTYPE html>
-<html>
-<head>
-        <meta charset="utf-8">
-        <title>Magic</title>
-        <!-- Behavioral Meta Data -->
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-        <meta name="keywords" content="parallax,javascript,jquery,zepto,plugin">
-        <link href="https://fonts.googleapis.com/css?family=PT+Sans|PT+Serif" rel="stylesheet">
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-</head>
-<body>
   <div id="container" class="wrapper">
     <div id="scene" class="scene unselectable"
-      data-friction-x="0.08"
-      data-friction-y="0.08"
-      data-scalar-x="25"
-      data-scalar-y="15">
-        <div class="layer" data-depth="0.00"><img src="img/background1.png"></div>
-        <div class="layer" data-depth=".10"></div>
-        <div class="layer" data-depth="0.2"><img src="img/clouds2.png"></div>
-        <div class="layer" data-depth="0.25"><img src="img/clouds9.png"></div>
-        <div class="layer" data-depth="0.30"><img src="img/cloud1.png"></div>
-        <div class="layer" data-depth="0.35"><img src="img/clouds8.png"></div>
-    </div>
-    <div id="app">  
-      <transition name="fade">
-        <div class="content" v-if="showCharClass">
-          <h3> Choose Your Class </h3>
-            <ul v-for="charClass in charClasses" v-bind:key="charClass.id">
+    data-friction-x="0.08"
+    data-friction-y="0.08"
+    data-scalar-x="25"
+    data-scalar-y="15">
+    <div class="layer" data-depth="0.00"><img src="img/background1.png"></div>
+    <div class="layer" data-depth="0.2"><img src="img/clouds2.png" class="cloud"> </div>
+    <div class="layer" data-depth="0.25"><img src="img/clouds9.png" class="cloud"></div>
+    <div class="layer" data-depth="0.30"><img src="img/cloud1.png" class="cloud"></div>
+    <div class="layer" data-depth="0.35"><img src="img/clouds8.png" class="cloud"></div>
+    <div class="layer" data-depth="0.35"><div class="overlay"></div></div>
+  </div>
+  <div id="app" @touchmove.prevent>  
+    <transition name="fade">
+      <div v-if="showCharClass" class="info-container">
+        <div class="info">
+          <draggable-header-view id="slideOut">
+            <template slot="header">
+              <h1>Choose your Class: </h1>
+            </template>
+            <template slot="content">
+              <ul v-for="charClass in charClasses" v-bind:key="charClass.id">
                 <input type="radio" v-bind:value="charClass.name" v-model="charClassChoice">
-                  <label for="charClass.id">{{ charClass.name }}</label>
+                <label id="label" for="charClass.id" v-on:click="revealModal(charClass)">{{ charClass.name }}</label>
                 <br>
-            </ul>
-            <span>You really wanna be a: {{ charClassChoice }}</span>
-            <button v-on:click="selectCharClassChoice()">Yup, yeah I do</button>
+              </ul>
+              <span>You really wanna be a: {{ charClassChoice }}</span>
+              <button v-on:click="selectCharClassChoice()">Yup, yeah I do</button>
+            </template>
+          </draggable-header-view>
         </div>
-      </transition>
-      <transition name="fade">
-        <div class="content" v-if="showRace">
-          <h3> Choose Your Race </h3>
-          <ul v-for="race in races" v-bind:key="race.id">
-              <input type="radio" v-bind:value="race.name" v-model="raceChoice">
-                <label for="race.id">{{ race.name }}</label>
-              <br>
-          </ul>
-          <span>You really wanna be a: {{ raceChoice }}</span>
-          <button v-on:click="selectRace()">Yup, yeah I do</button>
+      </div>
+    </transition>
+    <transition name="fade">
+      <div v-if="showRace" class="info-container">
+        <div class="info">
+          <draggable-header-view id="slideOut">
+            <template slot="header">
+              <h1>Choose your Race: </h1>
+            </template>
+            <template slot="content">
+              <ul v-for="race in races" v-bind:key="race.id">
+                <input type="radio" v-bind:value="race.name" v-model="raceChoice">
+                <label id="label" for="race.id" v-on:click="revealModal(race)">{{ race.name }}</label>
+                <br>
+              </ul>
+              <span>You really wanna be a: {{ raceChoice }}</span>
+              <button v-on:click="selectRace()">Yup, yeah I do</button>
+            </template>
+          </draggable-header-view>
         </div>
-      </transition>
-      <transition name="fade">
-        <div class="content" v-if="showAlignment">
-          <h3> Choose Your Alignment </h3>
-          <ul v-for="alignment in alignments" v-bind:key="alignment.id">
-              <input type="radio" v-bind:value="alignment.name" v-model="alignmentChoice">
-                <label for="alignment.id">{{ alignment.name }}</label>
-              <br>
-          </ul>
-          <span>You really wanna be a: {{ alignmentChoice }}</span>
-          <button v-on:click="selectAlignment()">Yup, yeah I do</button>
+      </div>
+    </transition>
+    <transition name="fade">
+      <div v-if="showAlignment" class="info-container">
+        <div class="info">
+          <draggable-header-view id="slideOut">
+            <template slot="header">
+              <h1>Choose your Alignment: </h1>
+            </template>
+            <template slot="content">
+              <ul v-for="alignment in alignments" v-bind:key="alignment.id">
+                <input type="radio" v-bind:value="alignment.name" v-model="alignmentChoice">
+                <label id="label" for="alignment.id" v-on:click="revealModal(alignment)">{{ alignment.name }}</label>
+                <br>
+              </ul>
+              <span>You really wanna be a: {{ alignmentChoice }}</span>
+              <button v-on:click="selectAlignment()">Yup, yeah I do</button>
+            </template>
+          </draggable-header-view>
         </div>
-      </transition>
-      <transition name="fade">
-        <div class="content" v-if="showBackground">
-          <h3> Choose Your Background </h3>
-          <ul v-for="background in backgrounds" v-bind:key="background.id">
-              <input type="radio" v-bind:value="background.name" v-model="backgroundChoice">
-                <label for="background.id">{{ background.name }}</label>
-              <br>
-          </ul>
-          <span>You really wanna be a: {{ backgroundChoice }}</span>
-          <button v-on:click="selectBackground()">Yup, yeah I do</button>
+      </div>
+    </transition>
+    <transition name="fade">
+      <div v-if="showBackground" class="info-container">
+        <div class="info">
+          <draggable-header-view id="slideOut">
+            <template slot="header">
+              <h1>Choose your Background: </h1>
+            </template>
+            <template slot="content">
+              <ul v-for="background in backgrounds" v-bind:key="background.id">
+                <input type="radio" v-bind:value="background.name" v-model="backgroundChoice">
+                <label id="label" for="background.id" v-on:click="revealModal(background)">{{ background.name }}</label>
+                <br>
+              </ul>
+              <span>You really wanna be a: {{ backgroundChoice }}</span>
+              <button v-on:click="selectBackground()">Yup, yeah I do</button>
+            </template>
+          </draggable-header-view>
         </div>
-      </transition>
-      <transition name="fade">
-        <div class="content" v-if="getUserInfo">
-          <div>
-            <h3>What's your name?</h3>
-            <input v-model="userName" type="text"></input>
+      </div>
+    </transition>
+    <transition name="fade">
+      <div v-if="getUserInfo" class="info-container">
+        <div class="info">
+          <draggable-header-view id="slideOut">
+            <template slot="header">
+              <h1>Choose your Character's name: </h1>
+            </template>
+            <template slot="content">
+              <input v-model="charName" type="text"></input>
+              <input v-model="userName" type="text" placeholder="And your name here, plox"></input>
+              <div>
+                <input class="button" type="submit" value="submit" v-on:click="buildCharacter()">
+              </div>
+            </template>
+          </draggable-header-view>
+        </div>
+      </div>
+    </transition>
+    <div v-if="showModal">
+      <transition name="modal">
+        <div class="modal-mask">
+          <div class="modal-wrapper">
+            <div class="modal-container">
+
+              <div class="modal-header">
+                <slot name="header">
+                  {{currentName}}
+                </slot>
+              </div>
+
+              <div class="modal-body">
+                <slot name="body">
+                  <p>{{currentDescription}}</p>
+                  <p>{{currentLangInfo}}</p>
+                </slot>
+              </div>
+
+              <div class="modal-footer">
+                <slot name="footer">
+                  <button class="modal-default-button" @click="showModal = false">
+                    OK
+                  </button>
+                </slot>
+              </div>
+            </div>
           </div>
-          <div>
-            <h3> Choose your Character Name</h3>
-            <input v-model="charName" type="text"></input>
-          </div>
-          <div>
-            <input class="button" type="submit" value="submit" v-on:click="buildCharacter()">
-          </div>
+        </div>
       </transition>
     </div>
   </div>
- 
+</div>
 
-      <!-- Scripts -->
-      <script src="js/parallax.js"></script>
-      <script>
-      // Pretty simple huh?
-      var scene = document.getElementById('scene');
-      var parallax = new Parallax(scene);
-      </script>
 
-</body>
-</html>
+<!-- Scripts -->
+<script src="js/parallax.js"></script>
+
+
+<!-- PARALLAX -->
+<script>
+  var scene = document.getElementById('scene');
+  var parallax = new Parallax(scene);
+</script>
+
+
+
+<!-- DRAGGABLE HEADER SCRIPT -->
+  <script type="text/x-template" id="header-view-template">
+    <div class="draggable-header-view"
+    @mousedown="startDrag" @touchstart="startDrag"
+    @mousemove="onDrag" @touchmove="onDrag"
+    @mouseup="stopDrag" @touchend="stopDrag" @mouseleave="stopDrag">
+      <svg class="bg" width="320" height="560">
+        <path :d="headerPath" fill="rgba(0, 0, 0, 0)"></path>
+      </svg>
+      <div class="header">
+        <slot name="header"></slot>
+      </div>
+      <div class="content" :style="contentPosition">
+        <slot name="content"></slot>
+      </div>
+    </div>
+  </script>
