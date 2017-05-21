@@ -1,4 +1,4 @@
-/* global Vue, $, dynamics  */
+/* global Vue, $, dynamics, jsPDF  */
 
 
 // THIS IS WHAT MAKES THE HEADER BOX BOUNCY
@@ -67,7 +67,7 @@ Vue.component('draggable-header-view', {
 // THIS IS ALL ABOUT THE DATA, YO
 document.addEventListener("DOMContentLoaded", function(event) { 
   var app = new Vue({
-    el: '#app',
+    el: '#scene',
     data: {
       showCharClass: true,
       showRace: false,
@@ -79,6 +79,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
       charClassChoice: '',
       alignmentChoice: '',
       backgroundChoice: '',
+      strengthChoice: '',
+      dexChoice: '',
+      constChoice: '',
+      intellChoice: '',
+      wisdomChoice: '',
+      charismaChoice: '',
       userName: '',
       charName: '',
       currentName: '',
@@ -88,9 +94,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
       alignments: [],
       backgrounds: [],
       charClasses: [],
+      characters: [],
       startCharacter: ""
     },
     mounted: function() {
+
+      var scene = document.getElementById('scene');
+      var parallax = new Parallax(scene);
       $.get('http://localhost:3000/api/v1/races', function(responseData) {
         this.races = responseData;        
       }.bind(this));
@@ -109,13 +119,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
         this.showCharClass = !this.showCharClass;
         this.showRace = !this.showRace;
         // THIS IS MY ATTEMPT AT DYNAMICS
-        // var moveContainer = document.getElementById("slideOut");
-        // dynamics.animate(moveContainer, {
-        //   translateX: 350,
-        //   opacity: 0.5
-        // }, {
-        //   type: dynamics.gravity,
-        // });
+        var moveContainer = document.getElementById("slideOut");
+        dynamics.animate(moveContainer, {
+          translateX: 350,
+          opacity: 0.5
+        }, {
+          type: dynamics.gravity,
+        });
       },
       selectRace: function() {
         this.showRace = !this.showRace;
@@ -134,6 +144,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         var params = {charClass: this.charClassChoice, race: this.raceChoice, alignment: this.alignmentChoice, background: this.backgroundChoice, characterName: this.charName, playerName: this.userName};
         $.post("/api/v1/characters", params, function(responseData) {
           this.characters.push(responseData);
+          this.buildPdf(responseData);
         }.bind(this)).fail(function(response) {
           this.errors = response.responseJSON.errors;
         }.bind(this));
@@ -150,20 +161,18 @@ document.addEventListener("DOMContentLoaded", function(event) {
         if (input.langInfo) {
           this.currentLangInfo = input.langInfo;
         }
+      },
+      buildPdf: function(inputData) {
+        var imgData = 
+        var doc = new jsPDF();
+        doc.setFontSize(40);
+        doc.text(35, 25, 'Paranyan loves jsPDF');
+        doc.addImage(imgData, 'JPEG', 15, 40, 180, 160);
+        console.log(doc);
+        // doc.output('datauri');
+        doc.save('test.pdf');
       }
     },
   });
 });
 
-
-
-
-
-
-
-
-
-
-
-      
-       

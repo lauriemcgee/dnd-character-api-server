@@ -17,7 +17,7 @@ class Api::V1::CharactersController < ApplicationController
       background: background.name,
       player_name: player_name,
       race: race.name,
-      alignment: alignment.name,
+      alignment: alignment.abbrev,
       experience_points: 0,
       strength: race.strength,
       dexterity: race.dex,
@@ -26,20 +26,20 @@ class Api::V1::CharactersController < ApplicationController
       wisdom: race.wis,
       charisma: race.char,
       proficiency_bonus: 0,
-      armor_class: 0,
+      armor_class: char_class.armor_class,
       initiative: 0,
       speed: race.speed,
       current_hit_points: 0,
       temporary_hit_points: 0,
-      hit_dice: 0,
-      personality_traits: ' ',
-      ideals: ' ',
-      bonds: ' ',
-      flaws: ' ',
+      hit_dice: char_class.hit_dice,
+      personality_traits: background.personality_traits,
+      ideals: background.ideals,
+      bonds: background.bonds,
+      flaws: background.flaws,
       features_and_traits: ' ',
       attacks_and_spellcasting: ' ',
-      equipment: ' ',
-      other_proficiencies_and_languages: race.language
+      equipment: background.equipment + ' ' + char_class.weapons,
+      other_proficiencies_and_languages: race.language + ' ' + background.features
       )
     render "create.html.erb"
   end

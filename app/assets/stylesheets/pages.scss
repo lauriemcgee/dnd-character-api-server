@@ -107,26 +107,34 @@ img {
     z-index: -50;
   }
 
-  label, input {
-    font-family: 'PT Serif', serif;
+  label, input, span {
+    font-family: 'Loved by the King', cursive;
+    font-size: 1.8em;
+    color: rgba(255,255,255, 0.6);
   }
 
   h3 {
-    font-family: 'PT Sans', sans-serif;
+   font-family: 'Loved by the King', cursive;
     text-shadow: 2px 2px 2px #aaa;
   }
 
-  button, .button {
-    padding: .3em .8em;
-    border: 1px solid rgba(0, 0, 0, .1);
-    background: #58a linear-gradient(hsla(0, 0%, 100%, .2), transparent);
-    border-radius: .2em;
-    box-shadow: 0 .05em .25em rgba(0, 0, 0, .5);
-    color: white;
-    text-shadow: 0 -.05em .05em rgba(0, 0, 0, .5);
-    font-size: 125%;
-    line-height: 1.5;
-  }
+.button button {
+  color:#fff;
+  border-color:#fff;
+  text-shadow:0 1px 1px rgba(0,0,0,0.1);
+  box-shadow:0 1px 3px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.1) inset
+}
+.button button:before, .button button:after  {border-color:#fff
+}
+.button button:hover:before, .button button:hover:after {width:calc(100% + 12px);
+  height:calc(100% + 12px);
+  border-color:#353535;
+}
+.button button:hover {
+  color:#fff;
+  background-color:#353535;
+  border-color:#353535
+}
 
 
 h1 {
@@ -139,13 +147,13 @@ a {
 }
 .draggable-header-view {
   background-color: rgba(0, 0, 0, 0);
-  width: 320px;
-  height: 100%;
+  width: 400px;
+  height: 300px;
   overflow: scroll;
   margin: 30px auto;
   position: relative;
-  font-family: 'Roboto', Helvetica, Arial, sans-serif;
-  color: #fff;
+  color: rgba(255,255,255, 0.6);
+  font-family: 'Loved by the King', cursive;
   font-size: 14px;
   font-weight: 300;
   -webkit-user-select: none;
@@ -169,8 +177,9 @@ a {
   height: 50px;
 }
 .draggable-header-view .content {
-  color: #fff;
+  color: rgba(255,255,255, 0.6);
   line-height: 1.5em;
+  font-family: 'Loved by the King', cursive;
 }
 
 .info-container {
@@ -178,7 +187,7 @@ a {
   display: block;
   width: 100%;
   left: 0;
-  top: 0;
+  top: 210px;
 }
 .info {
   display: flex;
@@ -186,17 +195,6 @@ a {
   padding: 1em;
   margin: 1em;
 }
-
-.overlay {
-   position: absolute;
-   top: 0;
-   left: 0;
-   width: 100%;
-   height: 100%;
-   background-color: black;
-   opacity: 0.25;
-}
-
 
 
 // THIS IS FOR THE MODAL
@@ -207,31 +205,37 @@ a {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, .5);
   display: table;
   transition: opacity .3s ease;
 }
 
 .modal-wrapper {
-  display: table-cell;
+  position: relative;
+  padding: 1em;
+  margin: 1em;
   vertical-align: middle;
 }
 
 .modal-container {
-  width: 300px;
+  position: absolute;
+  display: block;
+  left: 200px;
+  top: 210px;
+  width: 50%;
   overflow: scroll;
   margin: 0px auto;
   padding: 20px 30px;
-  background-color: #fff;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: rgba(255,255,255, 0.6);
   border-radius: 2px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
   transition: all .3s ease;
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: 'Loved by the King', cursive;
 }
 
 .modal-header h3 {
   margin-top: 0;
-  color: #42b983;
+  color: rgba(0, 0, 0, 0.6);
 }
 
 .modal-body {
@@ -264,6 +268,10 @@ a {
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
 }
+
+
+
+
 
 
 

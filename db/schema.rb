@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170517011741) do
+ActiveRecord::Schema.define(version: 20170521001948) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,19 +25,27 @@ ActiveRecord::Schema.define(version: 20170517011741) do
 
   create_table "backgrounds", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.string   "toolProf"
     t.text     "equipment"
     t.text     "features"
     t.text     "blurb"
+    t.string   "personality_traits"
+    t.string   "ideals"
+    t.string   "bonds"
+    t.string   "flaws"
   end
 
   create_table "char_classes", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.text     "blurb"
+    t.string   "armor_class"
+    t.string   "hit_dice"
+    t.integer  "num_skills"
+    t.string   "weapons"
   end
 
   create_table "character_skills", force: :cascade do |t|
@@ -63,12 +71,12 @@ ActiveRecord::Schema.define(version: 20170517011741) do
     t.integer  "wisdom"
     t.integer  "charisma"
     t.integer  "proficiency_bonus"
-    t.integer  "armor_class"
+    t.string   "armor_class"
     t.integer  "initiative"
     t.integer  "speed"
     t.integer  "current_hit_points"
     t.integer  "temporary_hit_points"
-    t.integer  "hit_dice"
+    t.string   "hit_dice"
     t.string   "personality_traits"
     t.string   "ideals"
     t.string   "bonds"
