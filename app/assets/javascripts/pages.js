@@ -88,6 +88,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
       currentName: '',
       currentDescription: '',
       currentLangInfo: '',
+      currentBlurb: '',
+      currentEquipment: '',
       races: [],
       alignments: [],
       backgrounds: [],
@@ -176,46 +178,78 @@ document.addEventListener("DOMContentLoaded", function(event) {
         this.currentName = '';
         this.currentDescription = '';
         this.currentLangInfo = '';
+        this.currentBlurb = '';
+        this.currentEquipment = '';
 
         this.currentName = input.name;
         this.currentDescription = input.blurb;
         if (input.langInfo) {
           this.currentLangInfo = input.langInfo;
         }
+        if (input.description) {
+          this.currentBlurb = input.description;
+        }
+        if (input.equipment) {
+          this.currentEquipment = input.equipment;
+        }
       },
       buildPdf: function(inputData) {
         var character = inputData;
         var docDefinition = {
           content: [
-            `You have chosen your fate as ${character.character_name}`, 'Here are the major things you should know:',
+           { text: `You have chosen your fate as ${character.character_name}`, style: 'header' },
+            'Here are the major things you should know-feel free to print this bad boy and bring it with you!  Your Dungeon Master can take things from here!',
+           { text: ' '},
+           { text: ' '},
+           { text: 'Your stats:', style: 'header' },
+           { text: ' '},
             {
               // to treat a paragraph as a bulleted list, set an array of items under the ul key
               ul: [
-                character.char_class,
-                character.level,
-                character.background,
-                character.player_name,
-                character.race,
-                character.alignment,
-                character.experience_points,
-                character.strength,
-                character.dexterity,
-                character.constitution,
-                character.intelligence,
-                character.wisdom,
-                character.charisma,
-                character.armor_class,
-                character.speed,
-                character.hit_dice,
-                character.ideals,
-                character.bonds,
-                character.flaws,
-                character.equipment,
-                character.other_proficiencies_and_languages
+                `Class: ${character.char_class}`,
+                `Level: ${character.level}`,
+                `Race: ${character.race}`,
+                `Alignment: ${character.alignment}`,
+                `Background: ${character.background}`,
+                `XP: ${character.experience_points}`,
+                `Strength: ${character.strength}`,
+                `Dex: ${character.dexterity}`,
+                `Const:: ${character.constitution}`,
+                `Intell: ${character.intelligence}`,
+                `Wis: ${character.wisdom}`,
+                `Charisma:${character.charisma}`,
+                `Armor Class: ${character.armor_class}`,
+                `Speed: ${character.speed}`,
+                `Hit Dice: ${character.hit_dice}`
               ]
             },
-            'Make sure you bring this page to your Dungeon Master-they can take things from here!'
-          ]
+            { text: ' '},
+            { text: ' '},
+            { text: `What ${character.character_name} is all about:`, style: 'header' },
+            { text: ' '},
+            character.personality_traits,
+            { text: ' '},
+            character.ideals,
+            { text: ' '},
+            character.bonds,
+            { text: ' '},
+            character.flaws,
+            { text: ' '},
+            character.equipment,
+            { text: ' '},
+            character.other_proficiencies_and_languages
+          ],
+
+          styles: {
+            header: {
+              fontSize: 22,
+              bold: true
+            },
+            anotherStyle: {
+              italic: true,
+              alignment: 'right'
+            }
+          }
         };
         pdfMake.createPdf(docDefinition).open();
       }

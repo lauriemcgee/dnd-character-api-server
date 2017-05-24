@@ -78,7 +78,7 @@
                   <label id="label" for="alignment.id" v-on:click="revealModal(alignment)">{{ alignment.name }}</label>
                   <br>
                 </ul>
-                <span>You really wanna be a:<br> {{ alignmentChoice }}?</span><br>
+                <span>You really wanna be:<br> {{ alignmentChoice }}?</span><br>
                 <button class="panel button" v-on:click="selectAlignment()">Yup, yeah I do</button>
               </template>
             </draggable-header-view>
@@ -142,6 +142,8 @@
                   <slot name="body">
                     <p>{{currentDescription}}</p>
                     <p>{{currentLangInfo}}</p>
+                    <p> {{currentBlurb}}</p>
+                    <p>{{currentEquipment}}</p>
                   </slot>
                 </div>
 
