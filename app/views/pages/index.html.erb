@@ -1,23 +1,35 @@
 <div id="container" class="wrapper">
   <div id="scene" class="scene"
-    data-friction-x="0.08"
-    data-friction-y="0.08"
+    data-friction-x="0.075"
+    data-friction-y="0.075"
     data-scalar-x="25"
     data-scalar-y="15"
     data-pointer-events="true">
-    <div class="layer" data-depth="0.00"><img src="img/backgrounddnd.png"></div>
-    <div class="layer" data-depth="0.2"><img src="img/clouds2.png" class="cloud"> </div>
-    <div class="layer" data-depth="0.25"><img src="img/clouds9.png" class="cloud"></div>
-    <div class="layer" data-depth="0.30"><img src="img/cloud1.png" class="cloud"></div>
-    <div class="layer" data-depth="0.35"><img src="img/clouds8.png" class="cloud"></div>
-    <div class="layer" data-depth="0.35"><img src="img/centerbackground.png"></div>
-    <div class=layer data-depth=".36">
+    <div class="layer" data-depth="0.00"><img src="img/mainbackground.png"></div>
+    <div class="layer" data-depth="0.05"><img src="img/galaxy1.png"></div>
+    <div class="layer" data-depth="0.05"><img src="img/galaxy2.png"></div>
+    <div class="layer" data-depth="0.05"><img src="img/galaxy3.png"></div>
+    <div class="layer" data-depth="0.10"><img src="img/sign.png"></div>
+    <div class="layer" data-depth="0.09"><img src="img/waterfall.png"></div>
+    <div class="layer" data-depth="0.10"><img src="img/castle.png"></div>
+    <div class="layer" data-depth="0.2"><img src="img/clouds2.png"> </div>
+    <div class="layer" data-depth="0.22"><img src="img/clouds9.png"></div>
+    <div class="layer" data-depth="0.25"><img src="img/cloud1.png"></div>
+    <div class="layer" data-depth="0.28"><img src="img/clouds8.png"></div>
+    <div class="layer" data-depth="0.30"><img src="img/wallglow.png"></div>
+    <div class="layer" data-depth="0.35"><img src="img/lantern.png"></div>
+    <div class="layer" data-depth="0.355"><img src="img/scroll.png"></div>
+    <div class=layer data-depth=".36"
+      data-friction-x="0.075"
+      data-friction-y="0.075"
+      data-scalar-x="10"
+      data-scalar-y="5">
       <transition name="fade">
         <div v-if="showCharClass" class="info-container">
           <div class="info">
             <draggable-header-view id="slideOut">
               <template slot="header">
-                <h1>Class: </h1>
+                <h1>CHOOSE YOUR CLASS: </h1>
               </template>
               <template slot="content">
                 <ul v-for="charClass in charClasses" v-bind:key="charClass.id">
@@ -25,7 +37,7 @@
                   <label id="label" for="charClass.id" v-on:click="revealModal(charClass)">{{ charClass.name }}</label>
                   <br>
                 </ul>
-                <span>You really wanna be a: {{ charClassChoice }}</span>
+                <span>You really wanna be a:<br> {{ charClassChoice }}?</span><br>
                 <button class="panel button" v-on:click="selectCharClassChoice()">Yup, yeah I do</button>
               </template>
             </draggable-header-view>
@@ -37,7 +49,7 @@
           <div class="info">
             <draggable-header-view id="slideOut">
               <template slot="header">
-                <h1>Race: </h1>
+                <h1>CHOOSE YOUR RACE: </h1>
               </template>
               <template slot="content">
                 <ul v-for="race in races" v-bind:key="race.id">
@@ -45,7 +57,7 @@
                   <label id="label" for="race.id" v-on:click="revealModal(race)">{{ race.name }}</label>
                   <br>
                 </ul>
-                <span>You really wanna be a: {{ raceChoice }}</span>
+                <span>You really wanna be a:<br> {{ raceChoice }}?</span><br>
                 <button class="panel button" v-on:click="selectRace()">Yup, yeah I do</button>
               </template>
             </draggable-header-view>
@@ -58,7 +70,7 @@
           <div class="info">
             <draggable-header-view id="slideOut">
               <template slot="header">
-                <h1>Alignment: </h1>
+                <h1>CHOOSE YOUR ALIGNMENT </h1>
               </template>
               <template slot="content">
                 <ul v-for="alignment in alignments" v-bind:key="alignment.id">
@@ -66,7 +78,7 @@
                   <label id="label" for="alignment.id" v-on:click="revealModal(alignment)">{{ alignment.name }}</label>
                   <br>
                 </ul>
-                <span>You really wanna be a: {{ alignmentChoice }}</span>
+                <span>You really wanna be a:<br> {{ alignmentChoice }}?</span><br>
                 <button class="panel button" v-on:click="selectAlignment()">Yup, yeah I do</button>
               </template>
             </draggable-header-view>
@@ -78,7 +90,7 @@
           <div class="info">
             <draggable-header-view id="slideOut">
               <template slot="header">
-                <h1>Background: </h1>
+                <h1>CHOOSE YOUR BACKGROUND: </h1>
               </template>
               <template slot="content">
                 <ul v-for="background in backgrounds" v-bind:key="background.id">
@@ -86,7 +98,7 @@
                   <label id="label" for="background.id" v-on:click="revealModal(background)"> {{ background.name }}</label>
                   <br>
                 </ul>
-                <span>You really wanna be a: {{ backgroundChoice }}</span>
+                <span>You really wanna be a:<br> {{ backgroundChoice }}?</span><br>
                 <button class="panel button" v-on:click="selectBackground()">Yup, yeah I do</button>
               </template>
             </draggable-header-view>
@@ -98,11 +110,14 @@
           <div class="info">
             <draggable-header-view id="slideOut">
               <template slot="header">
-                <h1>Choose your Character's name: </h1>
+                <h1>CHOOSE YOUR IDENTITY: </h1>
               </template>
               <template slot="content">
-                <input v-model="charName" type="text"></input>
-                <input v-model="userName" type="text" placeholder="And your name here, plox"></input>
+                <input v-model="charName" type="text" placeholder="aka Character Name"></input>
+                <br>
+                <br>
+                <h1>AND YOUR NAME: </h1>
+                <input v-model="userName" type="text" placeholder="Your name"></input>
                 <div>
                   <input class="panel button" type="submit" value="submit" v-on:click="buildCharacter()">
                 </div>

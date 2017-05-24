@@ -1,4 +1,4 @@
-/* global Vue, $, dynamics, jsPDF  */
+/* global Vue, $, dynamics, pdfMake */
 
 
 // THIS IS WHAT MAKES THE HEADER BOX BOUNCY
@@ -60,9 +60,6 @@ Vue.component('draggable-header-view', {
   }
 });
 
-// Vue.component('modal', {
-//   template: '#modal-template'
-// });
 
 // THIS IS ALL ABOUT THE DATA, YO
 document.addEventListener("DOMContentLoaded", function(event) { 
@@ -74,6 +71,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
       showAlignment: false,
       showBackground: false,
       getUserInfo: false,
+      fin: false,
       showModal: false,
       raceChoice: '',
       charClassChoice: '',
@@ -98,7 +96,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
       startCharacter: ""
     },
     mounted: function() {
-
       var scene = document.getElementById('scene');
       var parallax = new Parallax(scene);
       $.get('http://localhost:3000/api/v1/races', function(responseData) {
@@ -130,22 +127,46 @@ document.addEventListener("DOMContentLoaded", function(event) {
       selectRace: function() {
         this.showRace = !this.showRace;
         this.showAlignment = !this.showAlignment;
+        var moveContainer = document.getElementById("slideOut");
+        dynamics.animate(moveContainer, {
+          translateX: 350,
+          opacity: 0.5
+        }, {
+          type: dynamics.gravity,
+        });
       },
       selectAlignment: function() {
         this.showAlignment = !this.showAlignment;
         this.showBackground = !this.showBackground;
+        var moveContainer = document.getElementById("slideOut");
+        dynamics.animate(moveContainer, {
+          translateX: 350,
+          opacity: 0.5
+        }, {
+          type: dynamics.gravity,
+        });
       },
       selectBackground: function() {
         this.showBackground = !this.showBackground;
         this.getUserInfo = !this.getUserInfo;
+        var moveContainer = document.getElementById("slideOut");
+        dynamics.animate(moveContainer, {
+          translateX: 350,
+          opacity: 0.5
+        }, {
+          type: dynamics.gravity,
+        });
       },
       buildCharacter: function() {
+        this.getUserInfo = !this.getUserInfo;
         this.errors = [];
         var params = {charClass: this.charClassChoice, race: this.raceChoice, alignment: this.alignmentChoice, background: this.backgroundChoice, characterName: this.charName, playerName: this.userName};
         $.post("/api/v1/characters", params, function(responseData) {
+          console.log('buildCharacter success', responseData);
           this.characters.push(responseData);
           this.buildPdf(responseData);
         }.bind(this)).fail(function(response) {
+          console.log('buildCharacter fail', response);
           this.errors = response.responseJSON.errors;
         }.bind(this));
       },
@@ -163,14 +184,40 @@ document.addEventListener("DOMContentLoaded", function(event) {
         }
       },
       buildPdf: function(inputData) {
-        var imgData = 
-        var doc = new jsPDF();
-        doc.setFontSize(40);
-        doc.text(35, 25, 'Paranyan loves jsPDF');
-        doc.addImage(imgData, 'JPEG', 15, 40, 180, 160);
-        console.log(doc);
-        // doc.output('datauri');
-        doc.save('test.pdf');
+        var character = inputData;
+        var docDefinition = {
+          content: [
+            `You have chosen your fate as ${character.character_name}`, 'Here are the major things you should know:',
+            {
+              // to treat a paragraph as a bulleted list, set an array of items under the ul key
+              ul: [
+                character.char_class,
+                character.level,
+                character.background,
+                character.player_name,
+                character.race,
+                character.alignment,
+                character.experience_points,
+                character.strength,
+                character.dexterity,
+                character.constitution,
+                character.intelligence,
+                character.wisdom,
+                character.charisma,
+                character.armor_class,
+                character.speed,
+                character.hit_dice,
+                character.ideals,
+                character.bonds,
+                character.flaws,
+                character.equipment,
+                character.other_proficiencies_and_languages
+              ]
+            },
+            'Make sure you bring this page to your Dungeon Master-they can take things from here!'
+          ]
+        };
+        pdfMake.createPdf(docDefinition).open();
       }
     },
   });

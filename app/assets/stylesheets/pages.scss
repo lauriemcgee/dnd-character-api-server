@@ -107,41 +107,18 @@ img {
     z-index: -50;
   }
 
-  label, input, span {
+  label, input {
     font-family: 'Loved by the King', cursive;
     font-size: 1.8em;
-    color: rgba(255,255,255, 0.6);
   }
 
-  h3 {
-   font-family: 'Loved by the King', cursive;
-    text-shadow: 2px 2px 2px #aaa;
-  }
-
-.button button {
-  color:#fff;
-  border-color:#fff;
-  text-shadow:0 1px 1px rgba(0,0,0,0.1);
-  box-shadow:0 1px 3px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.1) inset
-}
-.button button:before, .button button:after  {border-color:#fff
-}
-.button button:hover:before, .button button:hover:after {width:calc(100% + 12px);
-  height:calc(100% + 12px);
-  border-color:#353535;
-}
-.button button:hover {
-  color:#fff;
-  background-color:#353535;
-  border-color:#353535
-}
-
-
-h1 {
+h1, span {
   font-weight: 300;
-  font-size: 1.8em;
+  font-size: 2em;
   margin-top: 0;
 }
+
+
 a {
   color: #fff;
 }
@@ -177,8 +154,8 @@ a {
   height: 50px;
 }
 .draggable-header-view .content {
-  color: rgba(255,255,255, 0.6);
-  line-height: 1.5em;
+  color: rgba(255,255,255, 0.8);
+  line-height: 1.6em;
   font-family: 'Loved by the King', cursive;
 }
 
@@ -186,8 +163,8 @@ a {
   position: absolute;
   display: block;
   width: 100%;
-  left: 0;
-  top: 210px;
+  left: -200px;
+  top: 250px;
 }
 .info {
   display: flex;
@@ -219,28 +196,32 @@ a {
 .modal-container {
   position: absolute;
   display: block;
+  overflow-y: auto;
   left: 200px;
   top: 210px;
   width: 50%;
-  overflow: scroll;
-  margin: 0px auto;
+  height: 400px;
+  margin: 0 auto;
   padding: 20px 30px;
-  background-color: rgba(0, 0, 0, 0.6);
-  color: rgba(255,255,255, 0.6);
+  background-color: rgba(0, 0, 0, 0.85);
+  color: rgba(255,255,255, 0.99);
   border-radius: 2px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
   transition: all .3s ease;
   font-family: 'Loved by the King', cursive;
+  font-size: 1.5em;
 }
 
 .modal-header h3 {
   margin-top: 0;
-  color: rgba(0, 0, 0, 0.6);
+  color: rgba(255,255,255, 0.85);
+  font-size: 2em;
 }
 
 .modal-body {
   margin: 20px 0;
 }
+
 
 .modal-default-button {
   float: right;
@@ -265,8 +246,19 @@ a {
 
 .modal-enter .modal-container,
 .modal-leave-active .modal-container {
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1);
+  -webkit-transform: scale(2.0);
+  transform: scale(2.0);
+}
+
+button {
+  float: right;
+}
+
+.fin {
+  display: flex;
+  position: relative;
+  padding: 1em;
+  margin: 1em;
 }
 
 
