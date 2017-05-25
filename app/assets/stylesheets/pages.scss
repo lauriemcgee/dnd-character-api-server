@@ -113,9 +113,10 @@ img {
   }
 
 h1, span {
-  font-weight: 300;
-  font-size: 2em;
+  font-size: 2.5em;
   margin-top: 0;
+  font-stretch: expanded;
+  font-weight: 500;
 }
 
 
@@ -129,10 +130,10 @@ a {
   overflow: scroll;
   margin: 30px auto;
   position: relative;
-  color: rgba(255,255,255, 0.6);
+  color: rgba(218, 213, 221, 1);
   font-family: 'Loved by the King', cursive;
   font-size: 14px;
-  font-weight: 300;
+  font-weight: 200;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -154,9 +155,10 @@ a {
   height: 50px;
 }
 .draggable-header-view .content {
-  color: rgba(255,255,255, 0.8);
+  color: rgba(218, 213, 221, 1);
   line-height: 1.6em;
-  font-family: 'Loved by the King', cursive;
+  font-weight: 200;
+
 }
 
 .info-container {
@@ -188,8 +190,6 @@ a {
 
 .modal-wrapper {
   position: relative;
-  padding: 1em;
-  margin: 1em;
   vertical-align: middle;
 }
 
@@ -199,31 +199,41 @@ a {
   overflow-y: auto;
   left: 200px;
   top: 210px;
-  width: 50%;
-  height: 400px;
+  width: 55%;
+  height: 500px;
   margin: 0 auto;
   padding: 20px 30px;
-  background-color: rgba(0, 0, 0, 0.85);
-  color: rgba(255,255,255, 0.99);
+  background-color: rgba(0, 0, 0, 1);
+  color: rgba(231, 232, 233, 1);
   border-radius: 2px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
   transition: all .3s ease;
-  font-family: 'Loved by the King', cursive;
-  font-size: 1.5em;
+  font-family: 'Lato', sans-serif;
+  font-size: 1.2em;
+  line-height: 1.5em;
+  text-align: justify;
 }
 
 .modal-header h3 {
   margin-top: 0;
-  color: rgba(255,255,255, 0.85);
-  font-size: 2em;
+  color: rgba(231, 232, 233, 1);
+  font-size: 2.3em;
+  letter-spacing: 1.2px;
+  font-family: 'Loved by the King', cursive;
+}
+
+.modal-header>h3 {
+  -ms-transform: rotate(-7deg); /* IE 9 */
+  -webkit-transform: rotate(-7deg); /* Chrome, Safari, Opera */
+  transform: rotate(-7deg);
 }
 
 .modal-body {
-  margin: 20px 0;
+  margin: 50px;
 }
 
 
-.modal-default-button {
+.modal-footer>.button {
   float: right;
 }
 
@@ -250,8 +260,16 @@ a {
   transform: scale(2.0);
 }
 
-button {
-  float: right;
+.button {
+  align-content: center;
+  left: 100px;
+  background-color: transparent;
+  border: none;
+}
+
+.button {
+  height: 75px;
+  width: 75px;
 }
 
 .fin {
@@ -264,6 +282,8 @@ button {
 
 
 
-
+.layer>.depth-20 {
+  
+}
 
 

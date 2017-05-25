@@ -12,10 +12,10 @@
     <div class="layer" data-depth="0.10"><img src="img/sign.png"></div>
     <div class="layer" data-depth="0.09"><img src="img/waterfall.png"></div>
     <div class="layer" data-depth="0.10"><img src="img/castle.png"></div>
-    <div class="layer" data-depth="0.2"><img src="img/clouds2.png"> </div>
-    <div class="layer" data-depth="0.22"><img src="img/clouds9.png"></div>
-    <div class="layer" data-depth="0.25"><img src="img/cloud1.png"></div>
-    <div class="layer" data-depth="0.28"><img src="img/clouds8.png"></div>
+    <div class="layer" data-depth="0.2"><img src="img/clouds2.png" class="cloud depth-20"> </div>
+    <div class="layer" data-depth="0.22"><img src="img/clouds9.png" class="cloud depth-22"></div>
+    <div class="layer" data-depth="0.25"><img src="img/cloud1.png" class="cloud depth-25"></div>
+    <div class="layer" data-depth="0.28"><img src="img/clouds8.png" class="cloud depth-28"></div>
     <div class="layer" data-depth="0.30"><img src="img/wallglow.png"></div>
     <div class="layer" data-depth="0.35"><img src="img/lantern.png"></div>
     <div class="layer" data-depth="0.355"><img src="img/scroll.png"></div>
@@ -37,8 +37,9 @@
                   <label id="label" for="charClass.id" v-on:click="revealModal(charClass)">{{ charClass.name }}</label>
                   <br>
                 </ul>
-                <span>You really wanna be a:<br> {{ charClassChoice }}?</span><br>
-                <button class="panel button" v-on:click="selectCharClassChoice()">Yup, yeah I do</button>
+                <br><br>
+                <span>You really wanna be a:<br> {{ charClassChoice }}?</span><br><br>
+               <img class="button" src="/img/dndicon.png" alt="Submit" v-on:click="selectCharClassChoice()">
               </template>
             </draggable-header-view>
           </div>
@@ -57,8 +58,9 @@
                   <label id="label" for="race.id" v-on:click="revealModal(race)">{{ race.name }}</label>
                   <br>
                 </ul>
-                <span>You really wanna be a:<br> {{ raceChoice }}?</span><br>
-                <button class="panel button" v-on:click="selectRace()">Yup, yeah I do</button>
+                <br><br>
+                <span>You really wanna be a:<br> {{ raceChoice }}?</span><br><br>
+                <img class="button" src="/img/dndicon.png" alt="Submit" v-on:click="selectRace()">
               </template>
             </draggable-header-view>
           </div>
@@ -78,8 +80,9 @@
                   <label id="label" for="alignment.id" v-on:click="revealModal(alignment)">{{ alignment.name }}</label>
                   <br>
                 </ul>
-                <span>You really wanna be:<br> {{ alignmentChoice }}?</span><br>
-                <button class="panel button" v-on:click="selectAlignment()">Yup, yeah I do</button>
+                <br><br>
+                <span>You really wanna be:<br> {{ alignmentChoice }}?</span><br><br>
+                <img class="button" src="/img/dndicon.png" alt="Submit" v-on:click="selectAlignment()">
               </template>
             </draggable-header-view>
           </div>
@@ -98,8 +101,9 @@
                   <label id="label" for="background.id" v-on:click="revealModal(background)"> {{ background.name }}</label>
                   <br>
                 </ul>
-                <span>You really wanna be a:<br> {{ backgroundChoice }}?</span><br>
-                <button class="panel button" v-on:click="selectBackground()">Yup, yeah I do</button>
+                <br><br>
+                <span>You really wanna be a:<br> {{ backgroundChoice }}?</span><br><br>
+                <img class="button" src="/img/dndicon.png" alt="Submit" v-on:click="selectBackground()">
               </template>
             </draggable-header-view>
           </div>
@@ -116,11 +120,28 @@
                 <input v-model="charName" type="text" placeholder="aka Character Name"></input>
                 <br>
                 <br>
+                <br>
                 <h1>AND YOUR NAME: </h1>
-                <input v-model="userName" type="text" placeholder="Your name"></input>
+                <input v-model="userName" type="text"></input>
+                <br>
+                <br>
+                <br>
                 <div>
-                  <input class="panel button" type="submit" value="submit" v-on:click="buildCharacter()">
+                  <img class="button" src="/img/dndicon.png" alt="Submit" v-on:click="buildCharacter()">
                 </div>
+              </template>
+            </draggable-header-view>
+          </div>
+        </div>
+      </transition>
+       <transition name="fade">
+        <div v-if="fin" class="info-container">
+          <div class="info">
+            <draggable-header-view id="slideOut">
+              <template slot="header">
+                <h1>FIN</h1>
+              </template>
+              <template slot="content">
               </template>
             </draggable-header-view>
           </div>
@@ -149,9 +170,7 @@
 
                 <div class="modal-footer">
                   <slot name="footer">
-                    <button class="modal-default-button" @click="showModal = false">
-                      OK
-                    </button>
+                    <img class="button" @click="showModal = false" src="/img/dndicon.png" alt="Submit">
                   </slot>
                 </div>
               </div>

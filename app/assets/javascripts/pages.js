@@ -161,6 +161,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
       },
       buildCharacter: function() {
         this.getUserInfo = !this.getUserInfo;
+        this.fin = !this.fin;
         this.errors = [];
         var params = {charClass: this.charClassChoice, race: this.raceChoice, alignment: this.alignmentChoice, background: this.backgroundChoice, characterName: this.charName, playerName: this.userName};
         $.post("/api/v1/characters", params, function(responseData) {
@@ -198,10 +199,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
         var docDefinition = {
           content: [
            { text: `You have chosen your fate as ${character.character_name}`, style: 'header' },
-            'Here are the major things you should know-feel free to print this bad boy and bring it with you!  Your Dungeon Master can take things from here!',
+            'Here are the major things you should know-feel free to print this bad boy and bring it with you!  Your Dungeon Master will be taking things from here......',
            { text: ' '},
            { text: ' '},
-           { text: 'Your stats:', style: 'header' },
+           { text: 'Your stats:', style: 'smallheader' },
            { text: ' '},
             {
               // to treat a paragraph as a bulleted list, set an array of items under the ul key
@@ -214,7 +215,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 `XP: ${character.experience_points}`,
                 `Strength: ${character.strength}`,
                 `Dex: ${character.dexterity}`,
-                `Const:: ${character.constitution}`,
+                `Constitution: ${character.constitution}`,
                 `Intell: ${character.intelligence}`,
                 `Wis: ${character.wisdom}`,
                 `Charisma:${character.charisma}`,
@@ -242,12 +243,16 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
           styles: {
             header: {
-              fontSize: 22,
+              fontSize: 26,
               bold: true
             },
             anotherStyle: {
               italic: true,
               alignment: 'right'
+            },
+            smallheader: {
+              fontSize: 22,
+              bold: true,
             }
           }
         };
