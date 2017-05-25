@@ -20,10 +20,7 @@
     <div class="layer" data-depth="0.35"><img src="img/lantern.png"></div>
     <div class="layer" data-depth="0.355"><img src="img/scroll.png"></div>
     <div class=layer data-depth=".36"
-      data-friction-x="0.075"
-      data-friction-y="0.075"
-      data-scalar-x="10"
-      data-scalar-y="5">
+      >
       <transition name="fade">
         <div v-if="showCharClass" class="info-container">
           <div class="info">
@@ -161,6 +158,7 @@
 
                 <div class="modal-body">
                   <slot name="body">
+                    <br>
                     <p>{{currentDescription}}</p>
                     <p>{{currentLangInfo}}</p>
                     <p> {{currentBlurb}}</p>
